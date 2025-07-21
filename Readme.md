@@ -170,3 +170,4 @@ Class Labels: 'Normal', 'Hypopnea', 'Obstructive Apnea' (event labeling).
 Sleep Stages: 'Wake', 'N1', 'N2', 'N3', 'REM' (bonus/extension).
 
 Evaluation: Only leave-one-subject-out prevents data leakage. Random splits are inappropriate for personalized physiological data.
+![sleep monitor](https://github.com/Quantamaster/Health-Sensing/blob/47b84bfc9658fbab09b1379e1911104aadae83e2/sleep%20monitor.png)
