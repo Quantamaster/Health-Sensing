@@ -1,6 +1,7 @@
 # Health Sensing Data Visualization
 
 This repository contains a Python script designed to load, parse, and visualize physiological data collected during a sleep study for subject AP20. The script processes various CSV files containing time-series health sensing data, including airflow, SpO2 levels, respiratory efforts, sleep stages, and detected flow events.
+![sleep_study_AP20_visualization_corrected](https://github.com/Quantamaster/Health-Sensing/blob/e064a11340dd707f92e414f45eb92e4faa53736d/sleep_study_AP20_visualization_corrected.png)
 
 ## Features
 
@@ -157,6 +158,7 @@ Dataset/: Parquet file with windowed features and labels.
 Results/: Model performance metrics (JSON and logs).
 
 SleepStageDataset/: Sleep stage dataset, metadata, and (if --train) model performance.
+
 
 Advanced Notes
 Filtering: Bandpass 0.17-0.4 Hz (removes movement artifacts and drift).
