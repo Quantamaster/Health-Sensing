@@ -84,7 +84,7 @@ DeepMedico™ Sleep Breathing Irregularity Detection System
 A complete end-to-end pipeline for detecting breathing irregularities (e.g., Apnea, Hypopnea) and classifying sleep stages from overnight sleep study signals using deep learning.
 
 ## 🏗 Pipeline Architecture
-
+```text
 Raw Signals
    ↓
 Visualization (EDA & QC)
@@ -98,7 +98,7 @@ Parquet Dataset
 CNN / Conv-LSTM Models
    ↓
 LOPO Cross-Validation
-
+```
 ## 🧪 Methodology
 <details> <summary><b>📈 Signal Visualization</b></summary>
 
@@ -274,6 +274,7 @@ Sleep Stages: 'Wake', 'N1', 'N2', 'N3', 'REM' (bonus/extension).
 
 Evaluation: Only leave-one-subject-out prevents data leakage. Random splits are inappropriate for personalized physiological data.
 ![sleep monitor](https://github.com/Quantamaster/Health-Sensing/blob/47b84bfc9658fbab09b1379e1911104aadae83e2/sleep%20monitor.png)
+
 
 
 
