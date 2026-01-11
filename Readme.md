@@ -1,29 +1,21 @@
 # Health Sensing Data Visualization
 🧠 DeepMedico™: Health Sensing & Sleep Breathing Irregularity Detection
 <p align="center"> <img src="https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/Deep%20Learning-1D%20CNN%20%7C%20Conv--LSTM-brightgreen"/> <img src="https://img.shields.io/badge/Domain-Sleep%20Health%20%7C%20Physiology-purple"/> <img src="https://img.shields.io/badge/Data-Time--Series%20Signals-orange"/> <img src="https://img.shields.io/badge/License-MIT-lightgrey"/> </p> <p align="center"> <b>An end-to-end deep learning pipeline for sleep breathing irregularity detection and sleep stage classification</b> </p>
-📌 Table of Contents
+## 📌 Table of Contents
 
-Abstract
-
-Keywords
-
-Introduction
-
-Dataset
-
-Methodology
-
-Pipeline Architecture
-
-Directory Structure
-
-Usage
-
-Input Format
-
-Outputs
-
-Advanced Notes
+- [Abstract](#-abstract)
+- [Keywords](#-keywords)
+- [Introduction](#-introduction)
+- [Features](#features)
+- [Dataset](#-dataset)
+- [Pipeline Architecture](#-pipeline-architecture)
+- [Methodology](#-methodology)
+- [Directory Structure](#-directory-structure)
+- [Usage](#-usage)
+- [Input Format](#-input-format)
+- [Requirements](#requirements)
+- [Outputs](#-outputs)
+- [Advanced Notes](#-advanced-notes)
 
 
 
@@ -284,6 +276,7 @@ Sleep Stages: 'Wake', 'N1', 'N2', 'N3', 'REM' (bonus/extension).
 
 Evaluation: Only leave-one-subject-out prevents data leakage. Random splits are inappropriate for personalized physiological data.
 ![sleep monitor](https://github.com/Quantamaster/Health-Sensing/blob/47b84bfc9658fbab09b1379e1911104aadae83e2/sleep%20monitor.png)
+
 
 
 
