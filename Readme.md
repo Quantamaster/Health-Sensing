@@ -1,7 +1,53 @@
 # Health Sensing Data Visualization
+🧠 DeepMedico™: Health Sensing & Sleep Breathing Irregularity Detection
+<p align="center"> <img src="https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/Deep%20Learning-1D%20CNN%20%7C%20Conv--LSTM-brightgreen"/> <img src="https://img.shields.io/badge/Domain-Sleep%20Health%20%7C%20Physiology-purple"/> <img src="https://img.shields.io/badge/Data-Time--Series%20Signals-orange"/> <img src="https://img.shields.io/badge/License-MIT-lightgrey"/> </p> <p align="center"> <b>An end-to-end deep learning pipeline for sleep breathing irregularity detection and sleep stage classification</b> </p>
 
 This repository contains a Python script designed to load, parse, and visualize physiological data collected during a sleep study for subject AP20. The script processes various CSV files containing time-series health sensing data, including airflow, SpO2 levels, respiratory efforts, sleep stages, and detected flow events.
 ![sleep_study_AP20_visualization_corrected](https://github.com/Quantamaster/Health-Sensing/blob/e064a11340dd707f92e414f45eb92e4faa53736d/sleep_study_AP20_visualization_corrected.png)
+
+📌 Table of Contents
+Abstract
+Keywords
+Introduction
+Dataset
+Methodology
+Pipeline Architecture
+Directory Structure
+Usage
+Input Format
+Outputs
+Advanced Notes
+
+## 🧾 Abstract
+
+Sleep-related breathing disorders such as Obstructive Sleep Apnea (OSA) and Hypopnea require accurate and scalable detection systems.
+DeepMedico™ presents a research-grade, end-to-end framework that integrates:
+
+Multi-modal physiological signal visualization
+
+Signal preprocessing and dataset engineering
+
+Deep temporal modeling using CNN and Conv-LSTM
+
+Subject-independent evaluation using Leave-One-Participant-Out CV
+
+The pipeline is designed to be modular, reproducible, and clinically relevant.
+
+## 🔑 Keywords
+
+Sleep Study · Apnea · Hypopnea · Physiological Signals · Time-Series · CNN · Conv-LSTM · SpO₂ · Respiration · Deep Learning
+
+## 🧠 Introduction
+
+Manual polysomnography (PSG) analysis is costly and time-consuming. Automated systems must handle:
+
+Inter-subject variability
+
+Temporal dependencies
+
+Strict evaluation protocols to prevent data leakage
+
+DeepMedico™ addresses these challenges with a fully automated and explainable pipeline, spanning visualization to model evaluation.
 
 ## Features
 
@@ -14,30 +60,92 @@ This repository contains a Python script designed to load, parse, and visualize 
     * SpO2 (Blood Oxygen Saturation)
     * Thoracic Respiration
     * Airflow
+ 
+## 📊 Dataset
+
+Each participant’s overnight recording includes:
+
+Nasal airflow
+
+Thoracic respiratory movement
+
+SpO₂ levels
+
+Expert-annotated breathing events
+
+Sleep stage labels
 DATASET : https://drive.google.com/drive/folders/1J95cTl574LLdj4uelYwjyv0094d8sOpD?usp=sharing
 
 DeepMedico™ Sleep Breathing Irregularity Detection System
 A complete end-to-end pipeline for detecting breathing irregularities (e.g., Apnea, Hypopnea) and classifying sleep stages from overnight sleep study signals using deep learning.
 
-Features
-Signal Visualization: Multi-signal PDF plots with overlaid event annotations.
+## 🏗 Pipeline Architecture
 
-Signal Preprocessing: Advanced bandpass filtering for breathing frequency extraction.
+Raw Signals
+   ↓
+Visualization (EDA & QC)
+   ↓
+Preprocessing & Filtering
+   ↓
+Windowing & Labeling
+   ↓
+Parquet Dataset
+   ↓
+CNN / Conv-LSTM Models
+   ↓
+LOPO Cross-Validation
 
-Dataset Engineering: 30-second, 50% overlapped windows with participant-wise labeling.
+## 🧪 Methodology
+<details> <summary><b>📈 Signal Visualization</b></summary>
 
-Efficient Storage: Dataset saved in Parquet format (ML-native, compressed).
+Multi-signal time-aligned plots
 
-Deep Learning Models: 1D CNN and Conv-LSTM architectures for robust time series classification.
+Apnea/Hypopnea overlays
 
-Cross-Validation: Leave-One-Participant-Out CV to prevent data leakage.
+Exported as per-participant PDFs for EDA and QC
+
+</details> <details> <summary><b>🧹 Signal Preprocessing</b></summary>
+
+Bandpass filtering (0.17–0.4 Hz)
+
+Timestamp normalization
+
+Noise and drift suppression
+
+</details> <details> <summary><b>📦 Dataset Engineering</b></summary>
+
+30-second windows
+
+50% overlap
+
+Event-based labeling
+
+Parquet storage for efficiency
+
+</details> <details> <summary><b>🤖 Deep Learning Models</b></summary>
+
+1D CNN – local temporal features
+
+Conv-LSTM – long-range dependencies
+
+Multi-class classification
+
+</details> <details> <summary><b>📏 Evaluation Protocol</b></summary>
+
+Leave-One-Participant-Out CV
+
+Per-class Precision / Recall / F1
+
+Mean ± Std across folds
+
+</details>
 
 Bonus Task: Sleep stage classification using the same framework.
 
 Highly Modular: Each step can be run independently.
 
-Directory Structure
-text
+## Directory Structure
+
 DeepMedico/
 ├── Data/
 │   ├── AP20/   # Example participant folder
@@ -112,7 +220,7 @@ Usage:
 
 text
 python sleep_stage_classification.py -in_dir "Data" -out_dir "SleepStageDataset" --train
-Input Data Format
+## Input Data Format
 Each participant subfolder (e.g. AP20/) should contain:
 
 nasal_airflow.csv (timestamp,value)
@@ -127,7 +235,7 @@ sleep_profile.csv (start_time,end_time,sleep_stage)
 
 Timestamps must be in an unambiguous format (ideally ISO 8601).
 
-Requirements
+## Requirements
 Python >= 3.8
 
 See requirements.txt
@@ -160,7 +268,7 @@ Results/: Model performance metrics (JSON and logs).
 SleepStageDataset/: Sleep stage dataset, metadata, and (if --train) model performance.
 
 
-Advanced Notes
+## Advanced Notes
 Filtering: Bandpass 0.17-0.4 Hz (removes movement artifacts and drift).
 
 Windowing: 30 seconds, 50% overlap, matching standard sleep study analysis.
@@ -171,3 +279,4 @@ Sleep Stages: 'Wake', 'N1', 'N2', 'N3', 'REM' (bonus/extension).
 
 Evaluation: Only leave-one-subject-out prevents data leakage. Random splits are inappropriate for personalized physiological data.
 ![sleep monitor](https://github.com/Quantamaster/Health-Sensing/blob/47b84bfc9658fbab09b1379e1911104aadae83e2/sleep%20monitor.png)
+
