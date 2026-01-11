@@ -9,6 +9,7 @@ This repository contains a Python script designed to load, parse, and visualize 
 Abstract
 Keywords
 Introduction
+features
 Dataset
 Methodology
 Pipeline Architecture
@@ -144,35 +145,35 @@ Bonus Task: Sleep stage classification using the same framework.
 
 Highly Modular: Each step can be run independently.
 
-## Directory Structure
+## 📁 Directory Structure
 
 DeepMedico/
 ├── Data/
-│   ├── AP20/   # Example participant folder
-│   │   ├── nasal_airflow.csv
-│   │   ├── thoracic_movement.csv
-│   │   ├── spo2.csv
-│   │   ├── events.csv
-│   │   └── sleep_profile.csv
-│   └── ... (other participants)
-├── Visualizations/
-├── Dataset/
-├── SleepStageDataset/
-├── Results/
-├── vis.py
-├── create_dataset.py
-├── modeling.py
-├── sleep_stage_classification.py
-├── requirements.txt
-└── setup.py
-Pipeline Overview
-Visualize Signals
+│   ├── AP20/                      # Example participant folder
+│   │   ├── nasal_airflow.csv      # Nasal airflow signal (timestamp, value)
+│   │   ├── thoracic_movement.csv  # Thoracic respiration signal
+│   │   ├── spo2.csv               # Blood oxygen saturation (SpO₂)
+│   │   ├── events.csv             # Apnea/Hypopnea annotations
+│   │   └── sleep_profile.csv      # Sleep stage labels
+│   └── ...                        # Other participant folders (AP21, AP22, etc.)
+│
+├── Visualizations/                # Generated signal + annotation PDFs
+├── Dataset/                       # Windowed breathing-event dataset (Parquet)
+├── SleepStageDataset/             # Sleep stage dataset & features
+├── Results/                       # Model metrics, logs, CV results
+│
+├── vis.py                         # Signal visualization & EDA
+├── create_dataset.py              # Preprocessing, windowing, labeling
+├── modeling.py                    # 1D CNN & Conv-LSTM training + evaluation
+├── sleep_stage_classification.py  # Bonus: sleep stage classification
+│
+├── requirements.txt               # Python dependencies
+└── setup.py                       # Package installation
 
 Plot and export comprehensive signal + annotation PDFs for QC/EDA.
 
-Usage:
+## 🚀 Usage
 
-text
 python vis.py -name "Data/AP20"
 Create Dataset
 
@@ -182,12 +183,8 @@ Segments into 30s windows with 50% overlap.
 
 Labels windows according to breathing event overlap.
 
-Usage:
-
-text
 python create_dataset.py -in_dir "Data" -out_dir "Dataset" --format parquet
 Train & Evaluate Models
-
 1D CNN and Conv-LSTM, evaluated with leave-one-participant-out CV.
 
 Per-class/classification metrics and mean/std result tables.
@@ -208,19 +205,14 @@ python modeling.py --dataset "Dataset/sleep_breathing_dataset.parquet" --model b
 # Step 4: Bonus - Sleep stage classification
 python sleep_stage_classification.py -in_dir "Data" -out_dir "SleepStageDataset" --train
 
-Usage:
-
-text
+Snippets:
 python modeling.py --dataset "Dataset/sleep_breathing_dataset.parquet" --model both --epochs 100
 (Bonus) Sleep Stage Classification
-
 Same pipeline as above, but with sleep stage rather than breathing event labels.
-
-Usage:
-
-text
+Snippets:
 python sleep_stage_classification.py -in_dir "Data" -out_dir "SleepStageDataset" --train
-## Input Data Format
+
+## 📥 Input Format
 Each participant subfolder (e.g. AP20/) should contain:
 
 nasal_airflow.csv (timestamp,value)
@@ -242,11 +234,10 @@ See requirements.txt
 
 Install requirements:
 
-text
 pip install -r requirements.txt
 Or install as a package:
 
-text
+
 python setup.py install
 Example Pipeline (All Steps)
 bash
@@ -258,7 +249,8 @@ python create_dataset.py -in_dir "Data" -out_dir "Dataset" --format parquet
 python modeling.py --dataset "Dataset/sleep_breathing_dataset.parquet" --model both --epochs 100
 
 python sleep_stage_classification.py -in_dir "Data" -out_dir "SleepStageDataset" --train
-Output
+
+## 📤 Outputs
 Visualizations/: per-participant signal PDF files (EDA).
 
 Dataset/: Parquet file with windowed features and labels.
@@ -268,7 +260,7 @@ Results/: Model performance metrics (JSON and logs).
 SleepStageDataset/: Sleep stage dataset, metadata, and (if --train) model performance.
 
 
-## Advanced Notes
+## 🧠 Advanced Notes
 Filtering: Bandpass 0.17-0.4 Hz (removes movement artifacts and drift).
 
 Windowing: 30 seconds, 50% overlap, matching standard sleep study analysis.
@@ -279,4 +271,5 @@ Sleep Stages: 'Wake', 'N1', 'N2', 'N3', 'REM' (bonus/extension).
 
 Evaluation: Only leave-one-subject-out prevents data leakage. Random splits are inappropriate for personalized physiological data.
 ![sleep monitor](https://github.com/Quantamaster/Health-Sensing/blob/47b84bfc9658fbab09b1379e1911104aadae83e2/sleep%20monitor.png)
+
 
