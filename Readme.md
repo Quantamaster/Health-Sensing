@@ -150,30 +150,29 @@ Highly Modular: Each step can be run independently.
 
 ## 📁 Directory Structure
 
+
 DeepMedico/
 ├── Data/
 │   ├── AP20/                      # Example participant folder
 │   │   ├── nasal_airflow.csv      # Nasal airflow signal (timestamp, value)
 │   │   ├── thoracic_movement.csv  # Thoracic respiration signal
 │   │   ├── spo2.csv               # Blood oxygen saturation (SpO₂)
-│   │   ├── events.csv             # Apnea/Hypopnea annotations
+│   │   ├── events.csv             # Apnea / Hypopnea annotations
 │   │   └── sleep_profile.csv      # Sleep stage labels
-│   └── ...                        # Other participant folders (AP21, AP22, etc.)
+│   └── ...                        # Other participants (AP21, AP22, ...)
 │
-├── Visualizations/                # Generated signal + annotation PDFs
+├── Visualizations/                # Signal + annotation PDFs
 ├── Dataset/                       # Windowed breathing-event dataset (Parquet)
 ├── SleepStageDataset/             # Sleep stage dataset & features
-├── Results/                       # Model metrics, logs, CV results
+├── Results/                       # Metrics, logs, CV outputs
 │
-├── vis.py                         # Signal visualization & EDA
-├── create_dataset.py              # Preprocessing, windowing, labeling
-├── modeling.py                    # 1D CNN & Conv-LSTM training + evaluation
-├── sleep_stage_classification.py  # Bonus: sleep stage classification
+├── vis.py                         # Signal visualization (EDA & QC)
+├── create_dataset.py              # Preprocessing & windowing
+├── modeling.py                    # CNN / Conv-LSTM training
+├── sleep_stage_classification.py  # Sleep stage classification (bonus)
 │
 ├── requirements.txt               # Python dependencies
 └── setup.py                       # Package installation
-
-Plot and export comprehensive signal + annotation PDFs for QC/EDA.
 
 ## 🚀 Usage
 
